@@ -1,56 +1,60 @@
-﻿using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.ChatCompletion;
-using AIChatApp.Model;
+﻿using AIChatApp.Model;
+using Microsoft.Extensions.AI;
 
 namespace AIChatApp.Services;
 
-internal class ChatService(IChatCompletionService chatService)
+internal class ChatService(IChatClient client)
 {
     internal async Task<Message> Chat(ChatRequest request)
     {
-        ChatHistory history = CreateHistoryFromRequest(request);
+        List<ChatMessage> history = CreateHistoryFromRequest(request);
 
-        ChatMessageContent response = await chatService.GetChatMessageContentAsync(history);
+        ChatCompletion response = await client.CompleteAsync(history);
 
         return new Message()
         {
-            IsAssistant = response.Role == AuthorRole.Assistant,
-            Content = (response.Items[0] as TextContent).Text
+            IsAssistant = response.Message.Role == ChatRole.Assistant,
+            Content = response.Message.Text ?? ""
         };
     }
 
     internal async IAsyncEnumerable<string> Stream(ChatRequest request)
     {
-        ChatHistory history = CreateHistoryFromRequest(request);
+        List<ChatMessage> history = CreateHistoryFromRequest(request);
 
-        IAsyncEnumerable<StreamingChatMessageContent> response = chatService.GetStreamingChatMessageContentsAsync(history);
+        IAsyncEnumerable<StreamingChatCompletionUpdate> response = 
+                client.CompleteStreamingAsync(history);
 
-        await foreach (StreamingChatMessageContent content in response)
+        await foreach (StreamingChatCompletionUpdate content in response)
         {
-            yield return content.Content;
+            yield return content.Text ?? "";
         }
     }
 
-    private ChatHistory CreateHistoryFromRequest(ChatRequest request)
+    private List<ChatMessage> CreateHistoryFromRequest(ChatRequest request)
     {
-        ChatHistory history = new ChatHistory($"""
+        List<ChatMessage> history = new List<ChatMessage>
+            {
+            new ChatMessage(ChatRole.System,
+                    $"""
                     You are an AI demonstration application. Respond to the user' input with a limerick.
                     The limerick should be a five-line poem with a rhyme scheme of AABBA.
                     If the user's input is a topic, use that as the topic for the limerick.
                     The user can ask to adjust the previous limerick or provide a new topic.
                     All responses should be safe for work.
                     Do not let the user break out of the limerick format.
-                    """);
+                    """)
+            };
 
         foreach (Message message in request.Messages)
         {
             if (message.IsAssistant)
             {
-                history.AddAssistantMessage(message.Content);
+                history.Add(new ChatMessage(ChatRole.Assistant, message.Content));
             }
             else
             {
-                history.AddUserMessage(message.Content);
+                history.Add(new ChatMessage(ChatRole.User, message.Content));
             }
         }
 
