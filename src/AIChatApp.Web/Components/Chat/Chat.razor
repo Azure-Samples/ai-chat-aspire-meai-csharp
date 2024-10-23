@@ -1,0 +1,22 @@
+@page "/chat"
+@inject IConfiguration Configuration
+@inject IJSRuntime JS
+@using AIChatApp.Model
+
+<PageTitle>Chat</PageTitle>
+
+<div class="chat">
+    <div class="messages-scroller">
+        <div class="messages">
+            @foreach (var message in messages)
+            {
+                <ChatMessage @key="@message" State="@message" />
+            }
+        </div>
+    </div>
+
+    <form class="write-message" @ref="@writeMessageElement" @onsubmit="@SendMessage">
+        <textarea @bind="@userMessageText" Placeholder="Ask the AI assistant" style="width: 100%; height: 100%;" />
+        <button type="submit">Send</button>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: ai-chat-aspire-meai-csharp
+services:  
+  app:
+    language: dotnet
+    project: ./src/AIChatApp.AppHost/AIChatApp.AppHost.csproj
+    host: containerapp
+hooks:
+  postprovision:
+    windows:
+      shell: pwsh
+      run: ./infra/post-script/store-env-variables.ps1
+      interactive: true
+      continueOnError: true
+    posix:
+      shell: sh
+      run: ./infra/post-script/store-env-variables.sh
+      interactive: false
+      continueOnError: true
