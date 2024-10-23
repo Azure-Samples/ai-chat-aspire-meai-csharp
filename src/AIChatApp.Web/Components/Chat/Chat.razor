@@ -8,8 +8,6 @@
 <div class="chat">
     <div class="messages-scroller">
         <div class="messages">
-            <ChatMessage
-                State="@(new Message(){IsAssistant = true, Content = "Hi, let's write a limerick! What's a topic we should use?"})" />
             @foreach (var message in messages)
             {
                 <ChatMessage @key="@message" State="@message" />

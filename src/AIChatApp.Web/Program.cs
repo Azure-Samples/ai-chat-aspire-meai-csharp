@@ -2,8 +2,6 @@ using AIChatApp.Components;
 using AIChatApp.Model;
 using AIChatApp.Services;
 using Azure.AI.OpenAI;
-
-//using Microsoft.SemanticKernel;
 using Microsoft.Extensions.AI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +16,7 @@ builder.Services.AddRazorComponents()
 // Add the Azure OpenAI client configured in AppHost
 builder.AddAzureOpenAIClient("openai");
 
-// Add MEAI
+// Add Microsoft.Extensions.AI. This will use the OpenAI client configured in the line above
 var chatDeploymentName = builder.Configuration["AI_ChatDeploymentName"] ?? "chat";
 
 builder.Services.AddChatClient(c =>

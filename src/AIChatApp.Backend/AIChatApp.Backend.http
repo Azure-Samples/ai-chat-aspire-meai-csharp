@@ -1,6 +1,0 @@
-@AIChatApp.Backend_HostAddress = http://localhost:5281
-
-GET {{AIChatApp.Backend_HostAddress}}/chat/strea/
-Accept: application/json
-
-###

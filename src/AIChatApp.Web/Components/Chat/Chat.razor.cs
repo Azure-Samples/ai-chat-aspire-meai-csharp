@@ -9,7 +9,7 @@ public partial class Chat
 {
     [Inject]
     internal ChatService? ChatHandler { get; init; }
-    List<Message> messages = new();
+    List<Message> messages = new() { new Message { IsAssistant = true, Content = "Hi, let's write a limerick! What's a topic we should use?" } };
     ElementReference writeMessageElement;
     string? userMessageText;
 
