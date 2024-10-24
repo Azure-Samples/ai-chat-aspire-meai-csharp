@@ -6,8 +6,8 @@ using Projects;
 using System.Collections.Immutable;
 using System.Security.Cryptography;
 
-// TODO: Figure out how to determine if running in GH CodeSpaces
-var builder = DistributedApplication.CreateBuilder(args).WithCodespaces();
+var builder = DistributedApplication.CreateBuilder(args)
+    .WithCodespacesSupport(); // WORKAROUND: Enables GitHub Codespaces when running in that environment. This will be fixed in a future .NET Aspire release.
 
 var chatDeploymentName = "chat";
 
@@ -30,7 +30,7 @@ builder.Build().Run();
 
 public static class CodespaceExtensions
 {
-    public static IDistributedApplicationBuilder WithCodespaces(this IDistributedApplicationBuilder builder)
+    public static IDistributedApplicationBuilder WithCodespacesSupport(this IDistributedApplicationBuilder builder)
     {
         if (!builder.Configuration.GetValue<bool>("CODESPACES"))
         {
