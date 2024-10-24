@@ -15,6 +15,6 @@ hooks:
       continueOnError: true
     posix:
       shell: sh
-      run: ./infra/post-script/store-env-variables.sh
-      interactive: false
+      run: chmod +x ./infra/post-script/store-env-variables.sh && ./infra/post-script/store-env-variables.sh
+      interactive: true
       continueOnError: true

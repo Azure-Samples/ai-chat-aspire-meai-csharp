@@ -26,6 +26,31 @@
         }
     },
 
+	// Workarounds to run .NET Aspire in CodeSpaces until future support is added
+	"containerEnv": {
+		"ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+		"DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS ": "true"
+	},
+
+	"forwardPorts": [7243, 17099],
+
+	"portsAttributes": {
+		"5153": {
+			"label": "Web HTTPS"
+		},
+		"7243": {
+			"label": "Web HTTPS",
+			"protocol": "https"
+		},
+		"15282": {
+			"label": "Dashboard HTTP"
+		},
+		"17099": {
+			"label": "Dashboard HTTPS",
+			"protocol": "https"
+		}
+	},
+
 	"postCreateCommand": "dotnet dev-certs https --trust" // Enable HTTPS support
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
