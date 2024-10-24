@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Security.Cryptography;
 
 var builder = DistributedApplication.CreateBuilder(args)
-    .WithCodespacesSupport(); // WORKAROUND: Enables GitHub Codespaces when running in that environment. This will be fixed in a future .NET Aspire release.
+    .WithCodespacesSupport(); 
 
 var chatDeploymentName = "chat";
 
@@ -28,6 +28,7 @@ builder.AddProject<AIChatApp_Web>("aichatapp-web")
 
 builder.Build().Run();
 
+// WORKAROUND: Enables GitHub Codespaces when running in that environment. This will be fixed in a future .NET Aspire release.
 public static class CodespaceExtensions
 {
     public static IDistributedApplicationBuilder WithCodespacesSupport(this IDistributedApplicationBuilder builder)
