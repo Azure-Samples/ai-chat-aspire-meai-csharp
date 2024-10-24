@@ -13,8 +13,12 @@
 		},
 		"ghcr.io/devcontainers/features/dotnet:2": {}
 	},
+
 	"customizations": {
-        "vscode": {
+        "codespaces": {
+			"openFiles": ["docs/get-started-codespaces.md"]
+		},
+		"vscode": {
             "extensions": [
                 "ms-dotnettools.csdevkit",
                 "ms-dotnettools.vscode-dotnet-runtime",
