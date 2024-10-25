@@ -41,6 +41,17 @@ since the local app needs credentials for Azure OpenAI to work properly.
 
 You have a few options for getting started with this template.
 
+### GitHub Codespaces
+
+You can run this template virtually by using GitHub Codespaces. The button will open a web-based VS Code instance in your browser:
+
+1. Open the template (this may take several minutes):
+
+    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/ai-chat-aspire-meai-csharp)
+
+2. Open a terminal window
+3. Continue with the [deploying steps](#deploying)
+
 ### Local Environment
 
 If you're not using one of the above options for opening the project, then you'll need to:
@@ -75,10 +86,6 @@ Visual Stuido Code Dev Containers can also be used locally, which will open the 
 3. In the VS Code window that opens, once the project files show up (this may take several minutes), open a terminal window.
 
 4. Continue with the [deploying steps](#deploying)
-
-### GitHub Codespaces
-
-**Coming soon** - GitHub Codespaces can be used to view the sample, but currently building & running is not supported.
 
 ## Deploying
 
