@@ -13,8 +13,12 @@
 		},
 		"ghcr.io/devcontainers/features/dotnet:2": {}
 	},
+
 	"customizations": {
-        "vscode": {
+        "codespaces": {
+			"openFiles": ["docs/get-started-codespaces.md"]
+		},
+		"vscode": {
             "extensions": [
                 "ms-dotnettools.csdevkit",
                 "ms-dotnettools.vscode-dotnet-runtime",
@@ -22,9 +26,37 @@
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
                 "ms-azuretools.vscode-docker",
-                "ms-vscode.js-debug"            ]
+                "ms-vscode.js-debug"],
+				"settings": {
+					"remote.autoForwardPorts": false
+				}
         }
     },
+
+	// Workarounds to run .NET Aspire in CodeSpaces until future support is added
+	"containerEnv": {
+		"ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+		"DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS ": "true"
+	},
+
+	"forwardPorts": [7243, 17099],
+
+	"portsAttributes": {
+		"17099": {
+			"label": "Dashboard HTTPS",
+			"protocol": "https"
+		},
+		"7243": {
+			"label": "Web HTTPS",
+			"protocol": "https"
+		},
+		"5153": {
+			"label": "Web HTTPS"
+		},
+		"15282": {
+			"label": "Dashboard HTTP"
+		}
+	},
 
 	"postCreateCommand": "dotnet dev-certs https --trust" // Enable HTTPS support
 

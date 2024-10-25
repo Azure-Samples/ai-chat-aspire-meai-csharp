@@ -16,5 +16,5 @@ hooks:
     posix:
       shell: sh
       run: ./infra/post-script/store-env-variables.sh
-      interactive: false
+      interactive: true
       continueOnError: true

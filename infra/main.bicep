@@ -7,6 +7,17 @@ param environmentName string
 
 @minLength(1)
 @description('The location used for all deployed resources')
+// Look for the desired model in availability table. Default model is gpt-4o-mini:
+// https://learn.microsoft.com/azure/ai-services/openai/concepts/models#standard-deployment-model-availability
+@allowed([
+  'eastus'
+  'eastus2'
+  'northcentralus'
+  'southcentralus'
+  'swedencentral'
+  'westus'
+  'westus3'
+])
 param location string
 
 @description('Id of the user or app to assign application roles')

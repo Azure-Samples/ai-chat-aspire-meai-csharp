@@ -102,13 +102,14 @@ From a Terminal window, open the folder with the clone of this repo and run the 
     azd auth login
     ```
 
-2. Provision and deploy all the resources:
+2. Provision and deploy dependencies for the project:
 
     ```shell
-    azd up
+    azd env new <environment>
+    azd provision
     ```
 
-    It will prompt you to provide an `azd` environment name (like "chat-app"), select a subscription from your Azure account, and select a [location where OpenAI is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services&regions=all) (like "francecentral"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
+    You'll need to replace <envrionment> with an environment name you want to use (like "chat-app"), which will be used as a prefix for resources in Azure. Select a subscription from your Azure account, and select a [location where OpenAI is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services&regions=all) (like "francecentral"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
 
 3. When `azd` has finished deploying, you'll see an endpoint URI in the command output. Visit that URI, and you should see the chat app! 🎉
 
@@ -120,15 +121,17 @@ From a Terminal window, open the folder with the clone of this repo and run the 
 
 ## Run the application
 
-Start the project:
+Start the project by pressing the F5 key (or clicking the Run button in the Run & Debug sidebar).
 
-    **If using Visual Studio**, choose the `Debug > Start Debugging` menu.
-    **If using VS Code or GitHub CodeSpaces***, choose the `Run > Start Debugging` menu.
-    Finally, if using the command line, run the following from the project directory:
+If using the command line, run the following from the `src` directory:
 
     ```shell
     dotnet run
     ```
+
+In the Debug Console (or Terminal window) that appears, you'll see status messages written as the .NET Aspire application starts up. When it's finished starting, look for the text that says something like `Login to the dashboard at https://localhost:17099/login?t=8e08b4369732034c8d67dc80f54fa1db`. Copy the text after "t=" - in this example you'd copy the text "8e08b4369732034c8d67dc80f54fa1db" this is a token you'll use to login to the .NET Aspire Dashboard. Then, click on the https://localhost:17099 URL, paste the token you just copied, and login.
+
+Finally, in the dashboard that appears you'll see the aichatapp-web resource listed. Click on the URL under the Endpoints column to launch the web application and try the chat experience.
 
 ## Using an existing deployment
 
