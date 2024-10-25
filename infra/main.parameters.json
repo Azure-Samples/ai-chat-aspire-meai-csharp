@@ -10,6 +10,9 @@
       },
       "location": {
         "value": "${AZURE_LOCATION=eastus}"
+      },
+      "createRoleForUser": {
+        "value": "${CREATE_ROLE_FOR_USER=true}"
       }
     }
   }
