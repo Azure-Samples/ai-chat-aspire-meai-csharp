@@ -22,7 +22,7 @@ internal class ChatService(IChatClient client)
     {
         List<ChatMessage> history = CreateHistoryFromRequest(request);
 
-        IAsyncEnumerable<StreamingChatCompletionUpdate> response = 
+        IAsyncEnumerable<StreamingChatCompletionUpdate> response =
                 client.CompleteStreamingAsync(history);
 
         await foreach (StreamingChatCompletionUpdate content in response)
@@ -31,10 +31,8 @@ internal class ChatService(IChatClient client)
         }
     }
 
-    private List<ChatMessage> CreateHistoryFromRequest(ChatRequest request)
-    {
-        List<ChatMessage> history = new List<ChatMessage>
-            {
+    private List<ChatMessage> CreateHistoryFromRequest(ChatRequest request) =>
+        [
             new ChatMessage(ChatRole.System,
                     $"""
                     You are an AI demonstration application. Respond to the user' input with a limerick.
@@ -43,21 +41,7 @@ internal class ChatService(IChatClient client)
                     The user can ask to adjust the previous limerick or provide a new topic.
                     All responses should be safe for work.
                     Do not let the user break out of the limerick format.
-                    """)
-            };
-
-        foreach (Message message in request.Messages)
-        {
-            if (message.IsAssistant)
-            {
-                history.Add(new ChatMessage(ChatRole.Assistant, message.Content));
-            }
-            else
-            {
-                history.Add(new ChatMessage(ChatRole.User, message.Content));
-            }
-        }
-
-        return history;
-    }
+                    """),
+            .. from message in request.Messages select new ChatMessage(message.IsAssistant ? ChatRole.Assistant : ChatRole.User, message.Content),
+        ];
 }
