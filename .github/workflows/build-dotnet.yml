@@ -1,0 +1,31 @@
+name: Build .NET Solution
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore src/ai-chat-aspire-meai.sln
+
+      - name: Build solution
+        run: dotnet build src/ai-chat-aspire-meai.sln --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test src/ai-chat-aspire-meai.sln --no-build --verbosity normal
