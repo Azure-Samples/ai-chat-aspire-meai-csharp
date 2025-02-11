@@ -19,12 +19,9 @@ builder.AddAzureOpenAIClient("openai");
 // Add Microsoft.Extensions.AI. This will use the OpenAI client configured in the line above
 var chatDeploymentName = builder.Configuration["AI_ChatDeploymentName"] ?? "chat";
 
-builder.Services.AddChatClient(c =>
-{
-    var azureClient = c.Services.GetRequiredService<AzureOpenAIClient>();
-    return c.Use(azureClient.AsChatClient(chatDeploymentName));
-});
-
+builder.Services.AddChatClient(services => services
+    .GetRequiredService<AzureOpenAIClient>()
+    .AsChatClient(chatDeploymentName));
 
 builder.Services.AddTransient<ChatService>();
 
