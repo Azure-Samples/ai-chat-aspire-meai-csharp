@@ -58,7 +58,7 @@ If you're not using one of the above options for opening the project, then you'l
 
 1. Make sure the following tools are installed:
 
-    * [.NET 8](https://dotnet.microsoft.com/downloads/)
+    * [.NET 9](https://dotnet.microsoft.com/downloads/)
     * [Git](https://git-scm.com/downloads)
     * [Azure Developer CLI (azd)](https://aka.ms/install-azd)
     * [VS Code](https://code.visualstudio.com/Download) or [Visual Studio](https://visualstudio.microsoft.com/downloads/)

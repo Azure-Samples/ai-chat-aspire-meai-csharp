@@ -27,7 +27,7 @@ From a Terminal window, open the folder with the clone of this repo and run the 
     azd provision
     ```
 
-    You'll need to replace <envrionment> with an environment name you want to use (like "chat-app"), which will be used as a prefix for resources in Azure. Select a subscription from your Azure account, and select a [location where OpenAI is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services&regions=all) (like "francecentral"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
+    You'll need to replace <environment> with an environment name you want to use (like "chat-app"), which will be used as a prefix for resources in Azure. Select a subscription from your Azure account, and select a [location where OpenAI is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=cognitive-services&regions=all) (like "francecentral"). Then it will provision the resources in your account and deploy the latest code. If you get an error or timeout with deployment, changing the location can help, as there may be availability constraints for the OpenAI resource.
 
 3. When `azd` has finished deploying, you'll see an endpoint URI in the command output. Visit that URI, and you should see the chat app! 🎉
 
