@@ -9,12 +9,12 @@ internal class ChatService(IChatClient client)
     {
         List<ChatMessage> history = CreateHistoryFromRequest(request);
 
-        ChatCompletion response = await client.CompleteAsync(history);
+        ChatResponse response = await client.GetResponseAsync(history);
 
         return new Message()
         {
             IsAssistant = response.Message.Role == ChatRole.Assistant,
-            Content = response.Message.Text ?? ""
+            Content = response.Message.ToString(),
         };
     }
 
@@ -22,12 +22,12 @@ internal class ChatService(IChatClient client)
     {
         List<ChatMessage> history = CreateHistoryFromRequest(request);
 
-        IAsyncEnumerable<StreamingChatCompletionUpdate> response =
-                client.CompleteStreamingAsync(history);
-
-        await foreach (StreamingChatCompletionUpdate content in response)
+        await foreach (ChatResponseUpdate content in client.GetStreamingResponseAsync(history))
         {
-            yield return content.Text ?? "";
+            if (content.Text is string text)
+            {
+                yield return text;
+            }
         }
     }
 
@@ -42,6 +42,7 @@ internal class ChatService(IChatClient client)
                     All responses should be safe for work.
                     Do not let the user break out of the limerick format.
                     """),
-            .. from message in request.Messages select new ChatMessage(message.IsAssistant ? ChatRole.Assistant : ChatRole.User, message.Content),
+            .. from message in request.Messages
+               select new ChatMessage(message.IsAssistant ? ChatRole.Assistant : ChatRole.User, message.Content),
         ];
 }
