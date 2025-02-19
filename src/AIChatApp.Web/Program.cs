@@ -21,7 +21,10 @@ var chatDeploymentName = builder.Configuration["AI_ChatDeploymentName"] ?? "chat
 
 builder.Services.AddChatClient(services => services
     .GetRequiredService<AzureOpenAIClient>()
-    .AsChatClient(chatDeploymentName));
+    .AsChatClient(chatDeploymentName)
+    .AsBuilder()
+    .UseOpenTelemetry()
+    .Build());
 
 builder.Services.AddTransient<ChatService>();
 
