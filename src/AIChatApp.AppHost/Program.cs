@@ -3,7 +3,7 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var chatDeploymentName = "chat";
+var chatDeploymentName = "gpt-4o";
 
 // The connection string may be set in configuration to use a pre-existing deployment;
 // it's also set automatically when provisioning this sample using the included bicep code
