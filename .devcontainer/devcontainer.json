@@ -31,7 +31,7 @@
         }
     },
 
-	// Workarounds to run .NET Aspire in CodeSpaces until future support is added
+	// Workarounds to run Aspire in CodeSpaces until future support is added
 	"containerEnv": {
 		"ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
 		"DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS ": "true"

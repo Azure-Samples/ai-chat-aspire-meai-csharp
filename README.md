@@ -1,4 +1,4 @@
-# Chat Application using Azure OpenAI, Microsoft.Extensions.AI, and .NET Aspire (C#/.NET)
+# Chat Application using Azure OpenAI, Microsoft.Extensions.AI, and Aspire (C#/.NET)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/ai-chat-aspire-meai-csharp)
 [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/ai-chat-aspire-meai-csharp)
@@ -27,7 +27,7 @@ since the local app needs credentials for Azure OpenAI to work properly.
 
 * An [ASP.NET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) that uses the [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/) package to access language models to generate responses to user messages.
 * A Blazor frontend that streams responses from the backend.
-* [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) to orchestrate and build a cloud native application.
+* [Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) to orchestrate and build a cloud native application.
 * [Bicep files](https://docs.microsoft.com/azure/azure-resource-manager/bicep/) for provisioning Azure resources, including Azure OpenAI, Azure Container Apps, Azure Container Registry, Azure Log Analytics, and RBAC roles.
 * Using the OpenAI gpt-4o model through Azure OpenAI.
 
@@ -136,7 +136,7 @@ If using the command line, run the following from the `src` directory:
     dotnet run
     ```
 
-In the Debug Console (or Terminal window) that appears, you'll see status messages written as the .NET Aspire application starts up. When it's finished starting, look for the text that says something like `Login to the dashboard at https://localhost:17099/login?t=8e08b4369732034c8d67dc80f54fa1db`. Copy the text after "t=" - in this example you'd copy the text "8e08b4369732034c8d67dc80f54fa1db" this is a token you'll use to login to the .NET Aspire Dashboard. Then, click on the https://localhost:17099 URL, paste the token you just copied, and login.
+In the Debug Console (or Terminal window) that appears, you'll see status messages written as the Aspire application starts up. When it's finished starting, look for the text that says something like `Login to the dashboard at https://localhost:17099/login?t=8e08b4369732034c8d67dc80f54fa1db`. Copy the text after "t=" - in this example you'd copy the text "8e08b4369732034c8d67dc80f54fa1db" this is a token you'll use to login to the Aspire Dashboard. Then, click on the https://localhost:17099 URL, paste the token you just copied, and login.
 
 Finally, in the dashboard that appears you'll see the aichatapp-web resource listed. Click on the URL under the Endpoints column to launch the web application and try the chat experience.
 
@@ -179,7 +179,7 @@ You may want to consider additional security measures, such as:
 
 ## Resources
 
-* [eShopSupport .NET Aspire + AI sample](https://github.com/dotnet/eShopSupport/): A full featured .NET Aspire application using AI
+* [eShopSupport Aspire + AI sample](https://github.com/dotnet/eShopSupport/): A full featured Aspire application using AI
 * [Develop .NET Apps with AI Features](https://learn.microsoft.com/dotnet/ai/get-started/dotnet-ai-overview)
-* [.NET Aspire Overview](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview)
+* [Aspire Overview](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview)
 * [Overview of Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/)

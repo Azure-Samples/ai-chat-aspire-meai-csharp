@@ -47,7 +47,7 @@ If using the command line, run the following from the `src` directory:
     dotnet run
     ```
 
-In the Debug Console (or Terminal window) that appears, you'll see status messages written as the .NET Aspire application starts up. When it's finished starting, look for the text that says something like `Login to the dashboard at https://localhost:17099/login?t=8e08b4369732034c8d67dc80f54fa1db`. Copy the text after "t=" - in this example you'd copy the text "8e08b4369732034c8d67dc80f54fa1db" this is a token you'll use to login to the .NET Aspire Dashboard. Then, click on the https://localhost:17099 URL, paste the token you just copied, and login.
+In the Debug Console (or Terminal window) that appears, you'll see status messages written as the Aspire application starts up. When it's finished starting, look for the text that says something like `Login to the dashboard at https://localhost:17099/login?t=8e08b4369732034c8d67dc80f54fa1db`. Copy the text after "t=" - in this example you'd copy the text "8e08b4369732034c8d67dc80f54fa1db" this is a token you'll use to login to the Aspire Dashboard. Then, click on the https://localhost:17099 URL, paste the token you just copied, and login.
 
 Finally, in the dashboard that appears you'll see the aichatapp-web resource listed. Click on the URL under the Endpoints column to launch the web application and try the chat experience.
 
