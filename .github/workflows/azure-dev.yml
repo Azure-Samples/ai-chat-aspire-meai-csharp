@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Install azd 
-        uses: Azure/setup-azd@v2.1.0
+        uses: Azure/setup-azd@ae0f8b5482eeac61e940f447327d84c73beb8b1e # v2.1.0
 
       #- name: Run Microsoft Security DevOps Analysis
       #  uses: microsoft/security-devops-action@v1
